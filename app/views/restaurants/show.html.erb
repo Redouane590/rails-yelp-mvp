@@ -1,0 +1,33 @@
+<div class="container w-80 d-flex justify-content-center">
+<div class="w-100">
+
+<h1>Actual restaurant</h1>
+<%= @restaurant.name %>
+<%= @restaurant.category %>
+<%= @restaurant.address %>
+<%= @restaurant.phone_number %>
+<% @restaurant.reviews.each do |review|  %>
+<li><%= review.content  %>-- <%= review.rating  %> <%= link_to "Destroy review", [review.restaurant, review], data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %></li>
+<% end %>
+<div class="w-50">
+<h2>Add a comment:</h2>
+<%= link_to "Add a review", new_restaurant_review_path(@restaurant) %>
+  <%= simple_form_for [@restaurant, @review] do |f| %>
+    <%= f.input :content %>
+    <%= f.input :rating %>
+    <%= f.submit %>
+  <% end %>
+<ul>
+  <li><button class="btn"> <%= link_to "Edit", edit_restaurant_path(@restaurant) %></button></li>
+  <li><button class="btn"><%= link_to "Destroy", restaurant_path(@restaurant), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></button></li>
+</ul>
+</div>
+<%= link_to "back home", restaurants_path %>
+</div>
+</div>

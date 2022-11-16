@@ -1,0 +1,12 @@
+<div class="container w-50 d-flex justify-content-center">
+<div>
+<h1>create restaurant</h1>
+<%= simple_form_for @restaurant do |f| %>
+<%= f.input :name %>
+<%= f.input :address %>
+<%= f.input :category, collection: Restaurant::CATEGORIES %>
+<%= f.button :submit, class: "btn btn-primary w-100"  %>
+<% end %>
+</div>
+
+</div>
